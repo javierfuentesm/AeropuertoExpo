@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Simulación de torre de control registrando aviones y poniéndolos en pista",
+    "githubUrl": "https://github.com/javierfuentesm/AeropuertoExpo"
   }
 }

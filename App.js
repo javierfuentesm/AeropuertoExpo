@@ -426,12 +426,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 38 : 22,
-    alignItems: "stretch",
+    alignItems: "center",
     backgroundColor: "#FFFFFF",
     borderRadius: 4,
     borderWidth: 0.5,
-    borderBottomColor: "#bbb"
-  },
+    backgroundColor: '#f4f4f4',
+    },
   item: {
     padding: 5,
     fontSize: 18,
