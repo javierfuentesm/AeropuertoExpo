@@ -1,0 +1,28 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "DatePicker": "^2.0.0",
+    "expo": "^35.0.0",
+    "firebase": "^7.5.0",
+    "from": "^0.1.7",
+    "import": "0.0.6",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-dialog": "^5.6.0",
+    "react-native-paper": "^3.2.1",
+    "react-native-web": "^0.11.7"
+  },
+  "devDependencies": {
+    "babel-preset-expo": "^7.1.0"
+  },
+  "private": true
+}
