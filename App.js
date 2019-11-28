@@ -305,35 +305,7 @@ export default class App extends React.Component {
             <FlatList
               data={this.state.dataSource}
               renderItem={({ item }) => (
-                /*                <View>
-                  <ScrollView horizontal={true}>
-                    <TouchableWithoutFeedback>
-                      <View style={{ paddingTop: 10 }}>
-                        <Text
-                          style={{ color: "#4B0082" }}
-                          onPress={() => this.deleteItem(item)}
-                        >
-                          <Ionicons name="md-trash" size={20} />
-                        </Text>
-                      </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback
-                      onPress={() =>
-                        this.setState({
-                          selecteditem: item,
-                          itemname: item.name,
-                          fecha: item.fecha
-                        })
-                      }
-                    >
-                      <View>
-                        <Text style={styles.item}>
-                          {item.name} {item.fecha}{" "}
-                        </Text>
-                      </View>
-                    </TouchableWithoutFeedback>
-                  </ScrollView>
-                </View> */
+              
                 <>
                   <View style={{ height: 10 }}></View>
 
