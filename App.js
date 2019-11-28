@@ -344,7 +344,7 @@ export default class App extends React.Component {
                       <Paragraph>
                         {item.vuela
                           ? "Se encuentra en Pista"
-                          : "Actualmente no esta en pista"}
+                          : "Actualmente esta en el Hangar"}
                       </Paragraph>
                       <Paragraph>
                         {item.vuela
@@ -442,7 +442,7 @@ export default class App extends React.Component {
               }
             }}
           >
-            Item deleted successfully.
+            Se ha borrado exitosamente
           </Snackbar>
         </View>
       </PaperProvider>
