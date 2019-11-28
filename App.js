@@ -109,7 +109,7 @@ export default class App extends React.Component {
   vuelaItem(item) {
     if (item.vuela === true) {
       this.setState({ vuelaItem: item });
-      this.updateVuelo();
+      this.updateVuelo(true);
     } else {
       this.setState({ vuelaItem: item, dialogVisible: true });
     }
@@ -163,19 +163,51 @@ export default class App extends React.Component {
       .update(updates);
   }
 
-  updateVuelo() {
-    var updates = {};
-    updates["/aviones/" + this.state.vuelaItem.key] = {
-      name: this.state.vuelaItem.name,
-      fecha: this.state.vuelaItem.fecha,
-      frecuencia: this.state.choosenValue,
-      vuela: this.state.vuelaItem.vuela ? false : true
-    };
+  updateVuelo(siOno) {
+    if (siOno) {
+      var updates = {};
+          updates["/aviones/" + this.state.vuelaItem.key] = {
+            name: this.state.vuelaItem.name,
+            fecha: this.state.vuelaItem.fecha,
+            frecuencia: this.state.choosenValue,
+            vuela: this.state.vuelaItem.vuela ? false : true
+          };
 
-    return firebaseApp
-      .database()
-      .ref()
-      .update(updates);
+          return firebaseApp
+            .database()
+            .ref()
+            .update(updates);
+    }
+    else{
+      this.tasksRef
+      .orderByChild("frecuencia")
+      .equalTo(this.state.choosenValue)
+      .once("value")
+      .then(snapshot => {
+        if (snapshot.val()) {
+          alert(
+            "Ya esta registrada la frecuencia no puedes ingresar a la pista"
+          );
+        } else {
+          var updates = {};
+          updates["/aviones/" + this.state.vuelaItem.key] = {
+            name: this.state.vuelaItem.name,
+            fecha: this.state.vuelaItem.fecha,
+            frecuencia: this.state.choosenValue,
+            vuela: this.state.vuelaItem.vuela ? false : true
+          };
+
+          return firebaseApp
+            .database()
+            .ref()
+            .update(updates);
+        }
+      });
+
+    }
+
+
+    
   }
 
   saveItem() {
