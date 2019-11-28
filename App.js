@@ -38,6 +38,8 @@ export default class App extends React.Component {
       firebaseApp.initializeApp(Config);
     }
     this.tasksRef = firebaseApp.database().ref("/aviones");
+    console.disableYellowBox = true;
+
 
     const dataSource = [];
     this.state = {
@@ -433,7 +435,7 @@ export default class App extends React.Component {
             visible={this.state.snackbarVisible}
             onDismiss={() => this.setState({ snackbarVisible: false })}
             action={{
-              label: "Undo",
+              label: "Deshacer",
               onPress: () => {
                 // Do something
                 this.undoDeleteItem();
