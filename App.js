@@ -107,7 +107,12 @@ export default class App extends React.Component {
   }
 
   vuelaItem(item) {
-    this.setState({ vuelaItem: item, dialogVisible: true });
+    if (item.vuela === true) {
+      this.setState({ vuelaItem: item });
+      this.updateVuelo();
+    } else {
+      this.setState({ vuelaItem: item, dialogVisible: true });
+    }
   }
 
   performDeleteItem(key) {
@@ -164,7 +169,7 @@ export default class App extends React.Component {
       name: this.state.vuelaItem.name,
       fecha: this.state.vuelaItem.fecha,
       frecuencia: this.state.choosenValue,
-      vuela: true
+      vuela: this.state.vuelaItem.vuela ? false : true
     };
 
     return firebaseApp
@@ -302,6 +307,16 @@ export default class App extends React.Component {
                     <Card.Content>
                       <Title>{item.name}</Title>
                       <Paragraph>{item.fecha}</Paragraph>
+                      <Paragraph>
+                        {item.vuela
+                          ? "Se encuentra en Pista"
+                          : "Actualmente no esta en pista"}
+                      </Paragraph>
+                      <Paragraph>
+                        {item.vuela
+                          ? `Se encuentra en la ${item.frecuencia}`
+                          : ""}
+                      </Paragraph>
                     </Card.Content>
                     <Card.Cover
                       source={{ uri: "https://picsum.photos/500/500" }}
@@ -321,8 +336,9 @@ export default class App extends React.Component {
                       <Button onPress={() => this.deleteItem(item)}>
                         Eliminar
                       </Button>
+
                       <Button onPress={() => this.vuelaItem(item)}>
-                        Volar
+                        {item.vuela ? "Quitar de Pista" : "Poner en pista"}
                       </Button>
                     </Card.Actions>
                   </Card>
