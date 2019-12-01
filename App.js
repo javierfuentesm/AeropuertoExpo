@@ -40,7 +40,6 @@ export default class App extends React.Component {
     this.tasksRef = firebaseApp.database().ref("/aviones");
     console.disableYellowBox = true;
 
-
     const dataSource = [];
     this.state = {
       dataSource: dataSource,
@@ -168,48 +167,43 @@ export default class App extends React.Component {
   updateVuelo(siOno) {
     if (siOno) {
       var updates = {};
-          updates["/aviones/" + this.state.vuelaItem.key] = {
-            name: this.state.vuelaItem.name,
-            fecha: this.state.vuelaItem.fecha,
-            frecuencia: this.state.choosenValue,
-            vuela: this.state.vuelaItem.vuela ? false : true
-          };
+      updates["/aviones/" + this.state.vuelaItem.key] = {
+        name: this.state.vuelaItem.name,
+        fecha: this.state.vuelaItem.fecha,
+        frecuencia: this.state.choosenValue,
+        vuela: this.state.vuelaItem.vuela ? false : true
+      };
 
-          return firebaseApp
-            .database()
-            .ref()
-            .update(updates);
-    }
-    else{
+      return firebaseApp
+        .database()
+        .ref()
+        .update(updates);
+    } else {
       this.tasksRef
-      .orderByChild("frecuencia")
-      .equalTo(this.state.choosenValue)
-      .once("value")
-      .then(snapshot => {
-        if (snapshot.val()) {
-          alert(
-            "Ya esta registrada la frecuencia no puedes ingresar a la pista"
-          );
-        } else {
-          var updates = {};
-          updates["/aviones/" + this.state.vuelaItem.key] = {
-            name: this.state.vuelaItem.name,
-            fecha: this.state.vuelaItem.fecha,
-            frecuencia: this.state.choosenValue,
-            vuela: this.state.vuelaItem.vuela ? false : true
-          };
+        .orderByChild("frecuencia")
+        .equalTo(this.state.choosenValue)
+        .once("value")
+        .then(snapshot => {
+          if (snapshot.val()) {
+            alert(
+              "Ya esta registrada la frecuencia no puedes ingresar a la pista"
+            );
+          } else {
+            var updates = {};
+            updates["/aviones/" + this.state.vuelaItem.key] = {
+              name: this.state.vuelaItem.name,
+              fecha: this.state.vuelaItem.fecha,
+              frecuencia: this.state.choosenValue,
+              vuela: this.state.vuelaItem.vuela ? false : true
+            };
 
-          return firebaseApp
-            .database()
-            .ref()
-            .update(updates);
-        }
-      });
-
+            return firebaseApp
+              .database()
+              .ref()
+              .update(updates);
+          }
+        });
     }
-
-
-    
   }
 
   saveItem() {
@@ -305,7 +299,6 @@ export default class App extends React.Component {
             <FlatList
               data={this.state.dataSource}
               renderItem={({ item }) => (
-              
                 <>
                   <View style={{ height: 10 }}></View>
 
@@ -333,7 +326,10 @@ export default class App extends React.Component {
                           this.setState({
                             selecteditem: item,
                             itemname: item.name,
-                            fecha: item.fecha
+                            fecha: item.fecha,
+                            frecuencia:item.frecuencia,
+                            vuela:item.vuela
+
                           })
                         }
                       >
@@ -430,8 +426,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 4,
     borderWidth: 0.5,
-    backgroundColor: '#f4f4f4',
-    },
+    backgroundColor: "#f4f4f4"
+  },
   item: {
     padding: 5,
     fontSize: 18,
