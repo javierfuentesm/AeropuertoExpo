@@ -109,8 +109,7 @@ export default class App extends React.Component {
 
   vuelaItem(item) {
     if (item.vuela === true) {
-      this.setState({ vuelaItem: item });
-      this.updateVuelo(true);
+      this.updateVuelo(item);
     } else {
       this.setState({ vuelaItem: item, dialogVisible: true });
     }
@@ -164,14 +163,14 @@ export default class App extends React.Component {
       .update(updates);
   }
 
-  updateVuelo(siOno) {
-    if (siOno) {
+  updateVuelo(item) {
+    if (item) {
       var updates = {};
-      updates["/aviones/" + this.state.vuelaItem.key] = {
-        name: this.state.vuelaItem.name,
-        fecha: this.state.vuelaItem.fecha,
-        frecuencia: this.state.choosenValue,
-        vuela: this.state.vuelaItem.vuela ? false : true
+      updates["/aviones/" + item.key] = {
+        name: item.name,
+        fecha: item.fecha,
+        frecuencia: "",
+        vuela: false
       };
 
       return firebaseApp
@@ -327,9 +326,8 @@ export default class App extends React.Component {
                             selecteditem: item,
                             itemname: item.name,
                             fecha: item.fecha,
-                            frecuencia:item.frecuencia,
-                            vuela:item.vuela
-
+                            frecuencia: item.frecuencia,
+                            vuela: item.vuela
                           })
                         }
                       >
@@ -339,7 +337,11 @@ export default class App extends React.Component {
                         Eliminar
                       </Button>
 
-                      <Button onPress={() => this.vuelaItem(item)}>
+                      <Button
+                        onPress={() => {
+                          this.vuelaItem(item);
+                        }}
+                      >
                         {item.vuela ? "Quitar de Pista" : "Poner en pista"}
                       </Button>
                     </Card.Actions>
