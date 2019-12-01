@@ -195,6 +195,7 @@ export default class App extends React.Component {
               frecuencia: this.state.choosenValue,
               vuela: true
             };
+            this.setState({vuelaItem:null})
 
             return firebaseApp
               .database()
