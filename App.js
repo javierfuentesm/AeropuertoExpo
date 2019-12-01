@@ -48,7 +48,7 @@ export default class App extends React.Component {
       confirmVisible: false,
       fecha: "",
       dialogVisible: false,
-      frecuencias: ["72.010", "72.030", "72.050", "72.070", "72.090", "72.110"],
+      frecuencias: ["selecciona una opcion","72.010", "72.030", "72.050", "72.070", "72.090", "72.110"],
       choosenIndex: "",
       choosenValue: ""
     };
@@ -193,7 +193,7 @@ export default class App extends React.Component {
               name: this.state.vuelaItem.name,
               fecha: this.state.vuelaItem.fecha,
               frecuencia: this.state.choosenValue,
-              vuela: this.state.vuelaItem.vuela ? false : true
+              vuela: true
             };
 
             return firebaseApp
